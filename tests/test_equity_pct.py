@@ -1,3 +1,11 @@
+### Headcount Simulator App
+### m02n-instructor/tests/test_equity_pct.py
+###
+### Author: Sharon + GitHub Copilot
+### Date: Jan 20, 2026
+###
+### Headcount app tests for equity percentage feature.
+
 import pandas as pd
 import pytest
 from pathlib import Path
@@ -20,7 +28,7 @@ def _load_any_equity_column(csv_path: Path) -> pd.Series:
 
 
 def test_equity_pct_under_100_default_roster():
-    path = Path("/Users/sharzhou/m2-project/data_room/people/employee_roster.csv")
+    path = Path(__file__).parent.parent / "data_room/people/employee_roster.csv"
     series = _load_any_equity_column(path)
     # If equity column is present, assert all values are <= 100
     if not series.empty:
@@ -28,7 +36,7 @@ def test_equity_pct_under_100_default_roster():
 
 
 def test_equity_pct_under_100_uploaded_seed():
-    path = Path("/Users/sharzhou/m2-project/employee_roster_seed_startup.csv")
+    path = Path(__file__).parent.parent / "employee_roster_seed_startup.csv"
     series = _load_any_equity_column(path)
     if not series.empty:
         assert series.max() <= 100.0, f"Found equity value > 100 in {path}: {series.max()}"
